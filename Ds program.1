@@ -1,0 +1,75 @@
+#include <stdio.h>
+
+void combineTwo(int first[], int firstSize, int second[], int secondSize, int result[])
+{
+    int a = 0, b = 0, c = 0;
+
+    while (a < firstSize && b < secondSize)
+    {
+        if (first[a] < second[b]) 
+        {
+            result[c++] = first[a++];
+        }
+        else
+        {
+            result[c++] = second[b++];
+        }
+    }
+
+    while (a < firstSize)
+    {
+        result[c++] = first[a++];
+    }
+
+    while (b < secondSize)
+    {
+        result[c++] = second[b++];
+    }
+}
+
+void combineThree(int first[], int firstSize, int second[], int secondSize, int third[], int thirdSize, int result[])
+{
+    int temp[firstSize + secondSize];
+    combineTwo(first, firstSize, second, secondSize, temp);
+    combineTwo(temp, firstSize + secondSize, third, thirdSize, result);
+}
+
+int main()
+{
+    int first[] = {0,1,1,2,2,3,3,4,5,6,4,5,6,7,8,8,9,9,10,12};
+    int second[] = {9,10,11,12,13,14,15,16};
+    int third[] = {17,18,19,20,21};
+
+    int firstSize = sizeof(first) / sizeof(first[0]);
+    int secondSize = sizeof(second) / sizeof(second[0]);
+    int thirdSize = sizeof(third) / sizeof(third[0]);
+
+    int result[firstSize + secondSize + thirdSize];
+
+    void combineThree(int first, int firstSize,int second,int secondSize, int third, int thirdSize,int result);
+    printf("list 1=");
+    
+    for(int i=0;i<firstSize;i++)
+    {
+            printf("%d,",first[i]);
+    }
+    printf("\nlist 2=");
+    for(int i=0;i<secondSize;i++)
+    {
+        printf("%d,",second[i]);
+    }
+    printf("\nlist 3=");
+    for(int i=0;i<thirdSize;i++)
+    {
+        printf("%d,",third[i]);
+        
+    }
+    printf("\nresult list=");
+    for (int i = 0; i < firstSize + secondSize + thirdSize; i++)
+    {
+        printf("%d, ", result[i]);
+    }
+    
+
+    return 0;
+}
